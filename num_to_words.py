@@ -6,12 +6,15 @@ nums = {0: 'zero', 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six
         60: 'sixty', 70: 'seventy', 80: 'eighty', 90: 'ninety', 100: 'hundred', 1000: 'thousand', 1000000: 'million',
         1000000000: 'billion', 1000000000000: 'trillion'}
 
-kilo = 1000
+thousand = 1000
 
 
 def check_word(word, ignore=None):
     """
     checking for valid numbers. Ignore check
+    numbers = valid
+    alpha = invalid
+    error
     """
     ignore = ignore or []
     # remove ignored chars
@@ -56,7 +59,7 @@ def num_below_thousand(num):
             return (nums[num // 10 * 10]).strip()
         else:
             return (nums[num // 10 * 10] + '-' + nums[num % 10]).strip()
-    elif num < kilo:
+    elif num < thousand:
         end = num_below_thousand(num % 100)
         join = ''
         if end:
@@ -115,7 +118,7 @@ def main():
         words = [num_2_word(n) for n in num]
         [print(w) for w in words]
     except ValueError as e:
-        print(e)
+        print(e) # user does not need to see the trace for it
 
 
 if __name__ == '__main__':
