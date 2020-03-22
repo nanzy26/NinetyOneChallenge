@@ -1,5 +1,6 @@
-# NinetyOneChallenge
-Coding challenge - convert numbers to words
+# NinetyOneChallenge - Convert numers to words
+
+*Ran using Python 3.7*
 
 To run the script with the test input cases, please do the following:
 
@@ -11,4 +12,3 @@ It does this by splitting up the numbers into whether the number is above thousa
 Anything below 100 can be looked up in the dictionary and anything below 1000 can be looked up recursively within the function after splitting the number again. 
 
 The script handles negative numbers but not decimal points. There is a test file: test_num_to_words.py which has numerous cases.
-
