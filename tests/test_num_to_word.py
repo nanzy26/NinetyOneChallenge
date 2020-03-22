@@ -216,13 +216,13 @@ class TestNumToWords(unittest.TestCase):
 
     def test_check_word_throws_error(self):
         with self.assertRaises(ValueError):
-            num_to_words.check_word('#55458')
+            num_to_words.check_number('#55458')
 
     def test_check_word_is_valid(self):
-        self.assertEqual(True, num_to_words.check_word('35342'))
+        self.assertEqual(True, num_to_words.check_number('35342'))
 
     def test_check_word_is_invalid(self):
-        self.assertEqual(False, num_to_words.check_word('Hello'))
+        self.assertEqual(False, num_to_words.check_number('Hello'))
 
     def test_two_nums_in_sentence(self):
         self.assertEqual([7,9], num_to_words.sentence_to_num('7 ate 9'))

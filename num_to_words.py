@@ -1,20 +1,18 @@
 import argparse
 
-nums = {0: 'zero', 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 7: 'seven', 8: 'eight', 9: 'nine',
+NUMS = {0: 'zero', 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 7: 'seven', 8: 'eight', 9: 'nine',
         10: 'ten', 11: 'eleven', 12: 'twelve', 13: 'thirteen', 14: 'fourteen', 15: 'fifteen', 16: 'sixteen',
         17: 'seventeen', 18: 'eighteen', 19: 'nineteen', 20: 'twenty', 30: 'thirty', 40: 'forty', 50: 'fifty',
         60: 'sixty', 70: 'seventy', 80: 'eighty', 90: 'ninety', 100: 'hundred', 1000: 'thousand', 1000000: 'million',
         1000000000: 'billion', 1000000000000: 'trillion'}
 
-thousand = 1000
 
-
-def check_word(word, ignore=None):
+def check_number(word, ignore=None):
     """
     checking for valid numbers. Ignore check
     numbers = valid
-    alpha = invalid
-    error
+    alpha = ignore
+    alphanumeric mixture = error
     """
     ignore = ignore or []
     # remove ignored chars
@@ -37,7 +35,7 @@ def sentence_to_num(sentence):
     words = sentence.split(' ')
     output = []
     for word in words:
-        if check_word(word, ignore=None):
+        if check_number(word, ignore=None):
             output.append(word)
 
     return [int(i) for i in output]
@@ -53,18 +51,18 @@ def num_below_thousand(num):
     if num == 0:
         return ''
     if num < 20:  # anything under 20 has its own number
-        return nums[num]
+        return NUMS[num]
     elif num < 100:
         if num % 10 == 0:
-            return (nums[num // 10 * 10]).strip()
+            return (NUMS[num // 10 * 10]).strip()
         else:
-            return (nums[num // 10 * 10] + '-' + nums[num % 10]).strip()
-    elif num < thousand:
+            return (NUMS[num // 10 * 10] + '-' + NUMS[num % 10]).strip()
+    elif num < 1000:
         end = num_below_thousand(num % 100)
         join = ''
         if end:
             join = ' and ' if num % 100 < 100 else ' '
-        return (nums[num // 100] + ' hundred' + join + end).strip()
+        return (NUMS[num // 100] + ' hundred' + join + end).strip()
 
 
 def convert_number(num, scale=1):
@@ -75,7 +73,7 @@ def convert_number(num, scale=1):
     :return: word representation of number
     """
     if num < 1000:
-        p = nums[scale] if scale > 1 else ''
+        p = NUMS[scale] if scale > 1 else ''
         return (num_below_thousand(num) + ' ' + p + '').strip()
     else:
         scale *= 1000
