@@ -224,6 +224,9 @@ class TestNumToWords(unittest.TestCase):
     def test_check_word_is_invalid(self):
         self.assertEqual(False, num_to_words.check_word('Hello'))
 
+    def test_two_nums_in_sentence(self):
+        self.assertEqual([7,9], num_to_words.sentence_to_num('7 ate 9'))
+
 
 if __name__ == '__main__':
     unittest.main()
