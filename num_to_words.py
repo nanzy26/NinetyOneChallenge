@@ -113,12 +113,12 @@ def main():
     if args.file:
         with open(args.file) as file:
             txt = file.readline()
-    try:
-        num = sentence_to_num(txt)
-        words = [num_2_word(n) for n in num]
-        [print(w) for w in words]
-    except ValueError as e:
-        print(e) # user does not need to see the trace for it
+        try:
+            num = sentence_to_num(txt)
+            words = [num_2_word(n) for n in num]
+            [print(w) for w in words]
+        except ValueError as e:
+            print(e) # user does not need to see the trace for it
 
 
 if __name__ == '__main__':
